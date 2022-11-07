@@ -11,10 +11,10 @@ export let Engine = Matter.Engine,
     Body = Matter.Body;
 
 export const RENDER_WIDTH = 1200;
-export const RENDER_HEIGHT = 600;
+export const RENDER_HEIGHT = 725;
 export const BIRD_X = 250;
-export const BIRD_Y = 450;
-export const BIRD_SIZE_RED = 25;
+export const BIRD_Y = 575;
+export const BIRD_SIZE_RED = 5;
 export const BIRD_SIZE_CHUCK = 35;
 export const BIRD_SIZE_BOMB = 40;
 export const BIRD_SIZE_HAL = 38;

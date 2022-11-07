@@ -30,6 +30,7 @@ const playHomeButton = document.getElementById('play-home');
 const restartButton = document.getElementById('restart-btn');
 const homeButton = document.getElementById('home-btn');
 const stageButton = document.getElementById('stage-btn');
+const retryBtn = document.getElementById('retry-btn');
 
 let score,
     engine,
@@ -60,7 +61,7 @@ function setup() {
             height: RENDER_HEIGHT,
             showAngleIndicator: false,
             wireframes: false,
-            background: "lightblue"
+            background: "url(http://blackmermaps.com/Portfolio_Images/070504_Schwartz_Map_Draft04.jpg)"
         }
     })
 
@@ -90,12 +91,15 @@ function draw() {
         Composite.clear(engine.world);
         homeScreen = new HomeScreen();
         addComposites(homeScreen);
+        render.options.background = "url(http://blackmermaps.com/Portfolio_Images/070504_Schwartz_Map_Draft04.jpg)";
+        
     }
     else if (stageName == "tutorial") {
         Composite.clear(engine.world);
         score.score_stage1 = 0;
         tutorialStage = new TutorialStage();
         getStage(tutorialStage);
+        render.options.background = "url(../../data/img/troy.jpg)";
     }
     else if (stageName == "pyramid") {
         Composite.clear(engine.world);
@@ -180,7 +184,10 @@ restartButton.addEventListener('click', function (event) {
     }
     resetStage(stageName);
 });
-
+retryBtn.addEventListener('click', function (event) {
+    event.preventDefault();
+    restartButton.click();
+});
 // when user click home button at pause screen
 homeButton.addEventListener('click', function (event) {
     event.preventDefault();
@@ -251,17 +258,39 @@ function firingEvents(stage) {
             stage.slingshot.elastic2.body.render.visible = false;
             if (event.body == stage.bird.body) {
                 firing = true;
-                stage.remaingBirds -= 1;
+              //  stage.remainingBirds -= 1;
+                // setTimeout(() => {
+                //     if (stage.remainingBirds == 0) {
+                //         resetStage(stageName);
+                //     }
+                // },1000)
             }
         })
 
         Events.on(engine, 'afterUpdate', function () {
             addScore(stage)
             if (firing && Math.abs(stage.bird.body.position.x - BIRD_X) < 20
-                && Math.abs(stage.bird.body.position.y - BIRD_Y) < 20
-                && stage.remainingBirds > 0) {
+                && Math.abs(stage.bird.body.position.y - BIRD_Y) < 20) {
                 stage.firing(engine.world);
                 firing = false;
+                console.log(stage.remainingBirds);
+                if (stage.remainingBirds == 0) {
+                   // score.score_stage1 = 0;
+        setTimeout(function () {
+        // document.getElementById('rb-stage1-red1').style.display = "flex";
+        // document.getElementById('rb-stage1-red2').style.display = "flex";
+        // document.getElementById('rb-stage1-red3').style.display = "flex";
+                   // resetStage(stageName);
+                   for (let i = 0; i < 3; i++) {
+                    if (i+1 <= stage.score) {
+                        document.getElementById('current-stars').innerHTML += "⭐️";
+                    } else {
+                        document.getElementById('current-stars').innerHTML += "X";
+                    }
+                   }
+                   showButton("retry")
+                }, 1000)
+            }
             }
         })
     }
@@ -275,6 +304,13 @@ function addScore(stage) {
             stage.pig.body.position.x = -100;
             score += 1;
             stage.updateScore(score);
+            if (score == 1) {
+              //  score.score_stage1 = 0;
+        document.getElementById('rb-stage1-red1').style.display = "flex";
+        document.getElementById('rb-stage1-red2').style.display = "flex";
+        document.getElementById('rb-stage1-red3').style.display = "flex";
+                resetStage(stageName);
+            }
         }
     }
     else if (stageName == "pyramid") {

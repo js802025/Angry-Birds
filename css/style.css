@@ -139,7 +139,24 @@ body {
     background: none;
     transition: all 0.8s ease;
 }
-
+#retry {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: none;
+    background: none;
+    transition: all 0.8s ease;
+    z-index: 100;
+}
+#current-stars {
+    position: relative;
+    top: 0vh;
+}
+#retry-btn, #next-btn {
+    border: none;
+    background: none;
+}
 #home-btn {
     position: absolute;
     top: 4vh;
