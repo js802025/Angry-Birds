@@ -134,98 +134,98 @@ function draw() {
         score.score_stage1 = 0;
         tutorialStage = new TutorialStage();
         getStage(tutorialStage);
-        render.options.background = "url(../../data/img/troy.jpg)";
+        render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/troy.jpg)";
     }
     else if (stageName == "pyramid") {
         Composite.clear(engine.world);
         score.score_stage2 = 0;
         pyramidStage = new PyramidStage();
         getStage(pyramidStage);
-        render.options.background = "url(../../data/img/ismarus.jpeg)";
+        render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/ismarus.jpeg)";
     }
     else if (stageName == "twoPyramid") {
         Composite.clear(engine.world);
         score.score_stage3 = 0;
         twoPyramidStage = new TwoPyramidStage();
         getStage(twoPyramidStage);
-        render.options.background = "url(../../data/img/lotus.jpeg)";
+        render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/lotus.jpeg)";
     }
     else if (stageName == "boomerang") {
         Composite.clear(engine.world);
         score.score_stage4 = 0;
         boomerangStage = new BoomerangStage();
         getStage(boomerangStage);
-        render.options.background = "url(../../data/img/cyclop.jpg)";
+        render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/cyclop.jpg)";
     }
 else if (stageName == "aeolian") {
     Composite.clear(engine.world);
     score.score_stage5 = 0;
     aeolianStage = new AeolianStage();
     getStage(aeolianStage);
-    render.options.background = "url(../../data/img/aeolion.jpeg)";
+    render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/aeolion.jpeg)";
 }
 else if (stageName == "laestrygonian") {
     Composite.clear(engine.world);
     //score.score_stage6 = 0;
     laestrygonianStage = new LaestrygonianStage();
     getStage(laestrygonianStage);
-    render.options.background = "url(../../data/img/laestrygonian.jpeg)";
+    render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/laestrygonian.jpeg)";
 }
 else if (stageName == "aeaean") {
     Composite.clear(engine.world);
     //score.score_stage6 = 0;
     aeaeanStage = new AeaeanStage();
     getStage(aeaeanStage);
-    render.options.background = "url(../../data/img/aeaean.jpeg)";
+    render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/aeaean.jpeg)";
 }
 else if (stageName == "dead") {
     Composite.clear(engine.world);
     //score.score_stage6 = 0;
     deadStage = new DeadStage();
     getStage(deadStage);
-    render.options.background = "url(../../data/img/houseofdead.jpeg)";
+    render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/houseofdead.jpeg)";
 }
 else if (stageName == "siren") {
     Composite.clear(engine.world);
     //score.score_stage6 = 0;
     sirenStage = new SirenStage();
     getStage(sirenStage);
-    render.options.background = "url(../../data/img/siren.jpeg)";
+    render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/siren.jpeg)";
 }
 else if (stageName == "scylla") {
     Composite.clear(engine.world);
     //score.score_stage6 = 0;
     scyllaStage = new ScyllaStage();
     getStage(scyllaStage);
-    render.options.background = "url(../../data/img/scylla.jpeg)";
+    render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/scylla.jpeg)";
 }
 else if (stageName == "helios") {
     Composite.clear(engine.world);
     //score.score_stage6 = 0;
     heliosStage = new HeliosStage();
     getStage(heliosStage);
-    render.options.background = "url(../../data/img/helios.jpeg)";
+    render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/helios.jpeg)";
 }
 else if (stageName == "ogygia") {
     Composite.clear(engine.world);
     //score.score_stage6 = 0;
     ogygiaStage = new OgygiaStage();
     getStage(ogygiaStage);
-    render.options.background = "url(../../data/img/ogygia.jpeg)";
+    render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/ogygia.jpeg)";
 }
 else if (stageName == "scheria") {
     Composite.clear(engine.world);
     //score.score_stage6 = 0;
     scheriaStage = new ScheriaStage();
     getStage(scheriaStage);
-    render.options.background = "url(../../data/img/scheria.jpeg)";
+    render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/scheria.jpeg)";
 }
 else if (stageName == "ithaca") {
     Composite.clear(engine.world);
     //score.score_stage6 = 0;
     ithacaStage = new IthacaStage();
     getStage(ithacaStage);
-    render.options.background = "url(../../data/img/ithaca.jpeg)";
+    render.options.background = "url(https://github.com/js802025/Angry-Birds/raw/main/data/img/ithaca.jpeg)";
 }
     noLoop();
 }
@@ -297,7 +297,7 @@ stage14.addEventListener('click', function (event) {
 // home screen to stage select screen
 playHomeButton.addEventListener('click', function (event) {
     event.preventDefault();
-    var theme = new Audio("../../data/audio/theme.mp3")
+    var theme = new Audio("https://github.com/js802025/Angry-Birds/raw/main/data/audio/theme.mp3")
     theme.loop = true
     theme.play()
     let awaitReset = new Promise((resolve) => {

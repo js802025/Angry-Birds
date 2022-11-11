@@ -26,7 +26,7 @@
 
 ## Angry Birds
 
-<img src="data/img/pause-img.png" width="50%" height="50%">
+<img src="https://github.com/js802025/Angry-Birds/raw/main/data/img/pause-img.png" width="50%" height="50%">
 
 `Angry Birds` is a action-based video game created by [Rovio Entertainment](https://www.rovio.com/).
 
@@ -39,14 +39,14 @@ The game series focuses on a flock of birds who try to save their eggs from gree
 ### Birds
 |                    Red                     |              Chuck               |              Bomb               |              Hal               |
 | :----------------------------------------: | :------------------------------: | :-----------------------------: | :----------------------------: |
-| <img src="data/birds/red.png" width="70%"> | <img src="data/birds/chuck.png"> | <img src="data/birds/bomb.png"> | <img src="data/birds/hal.png"> |
+| <img src="https://github.com/js802025/Angry-Birds/raw/main/data/birds/red.png" width="70%"> | <img src="https://github.com/js802025/Angry-Birds/raw/main/data/birds/chuck.png"> | <img src="https://github.com/js802025/Angry-Birds/raw/main/data/birds/bomb.png"> | <img src="https://github.com/js802025/Angry-Birds/raw/main/data/birds/hal.png"> |
 |                    Cute                    |             Speed Up             |           Bigger Size           |           Boomerang            |
 
 ### Pigs
 
 |                      Minion                      |                      Corporal                      |                King                |
 | :----------------------------------------------: | :------------------------------------------------: | :--------------------------------: |
-| <img src="data/pigs/minion-pig.png" width="50%"> | <img src="data/pigs/corporal-pig.png" width="70%"> | <img src="data/pigs/king-pig.png"> |
+| <img src="https://github.com/js802025/Angry-Birds/raw/main/data/pigs/minion-pig.png" width="50%"> | <img src="https://github.com/js802025/Angry-Birds/raw/main/data/pigs/corporal-pig.png" width="70%"> | <img src="https://github.com/js802025/Angry-Birds/raw/main/data/pigs/king-pig.png"> |
 |                The Smallest Size                 |                    Medium Size                     |          The Biggest Size          |
 
 ## Game Mechanics and Interfaces
