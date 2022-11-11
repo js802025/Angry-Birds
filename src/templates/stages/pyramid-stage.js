@@ -1,4 +1,4 @@
-import { RedBird } from '../../organisms/birds/red-bird';
+import { WineBird } from '../../organisms/birds/wine-bird';
 import { ChuckBird } from '../../organisms/birds/chuck-bird';
 import { MinionPig } from '../../organisms/pigs/minion-pig';
 import { CorporalPig } from '../../organisms/pigs/corporal-pig';
@@ -28,8 +28,12 @@ class PyramidStage extends Subject {
         super();
         this.composites = [];
         this.remainingBirds = 3;
+        this.isOver = false
+        this.score = 0;
+        this.maxScore = 4;
 
-        this.bird = new RedBird(BIRD_X, BIRD_Y, BIRD_SIZE_RED);
+
+        this.bird = new WineBird(BIRD_X, BIRD_Y, 20);
         this.ground = new Ground(GROUND_X, GROUND_Y, RENDER_WIDTH, GROUND_HEIGHT);
         this.slingshot = new Slingshot(this.bird);
         this.pig1 = new MinionPig(710, 180, PIG_SIZE_MINION);
@@ -45,6 +49,11 @@ class PyramidStage extends Subject {
             }
             return box.getBody()
         });
+        document.getElementById('rb-stage2').style.display = "flex";
+        document.getElementById('rb-stage2-red1').style.display = "flex";
+        document.getElementById('rb-stage2-chuck1').style.display = "flex";
+        document.getElementById('rb-stage2-chuck2').style.display = "flex";
+        document.getElementById("ismarus-heading").style.animation = "fade 5s linear";
 
         this.flyingBird = this.bird;
 
@@ -69,6 +78,18 @@ class PyramidStage extends Subject {
             { remainingBirds: this.remainingBirds },
             { scoreToAdd: score }
         )
+        this.score += score
+    }
+
+    getStars() {
+        console.log("SCORE"+this.score)
+        if (this.score == 1) {
+            return 1
+        } else if (this.score == 2 || this.score == 3) {
+            return 2
+        } else if (this.score == 4) {
+            return 3
+        }
     }
 
     // control bird firing
@@ -90,7 +111,7 @@ class PyramidStage extends Subject {
             Composite.remove(world, slingshot.getLeftElastic());
             Composite.remove(world, slingshot.getRightElastic());
         } else {
-            let newBird = new ChuckBird(BIRD_X, BIRD_Y, BIRD_SIZE_CHUCK);
+            let newBird = new WineBird(BIRD_X, BIRD_Y, 20);
             this.bird = newBird;
             bird = this.bird;
             Composite.add(world, bird.getBody());

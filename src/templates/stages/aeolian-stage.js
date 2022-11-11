@@ -1,4 +1,4 @@
-import { TrojanBird } from '../../organisms/birds/trojan-bird';
+import { WindBird } from '../../organisms/birds/wind-bird';
 import { MinionPig } from '../../organisms/pigs/minion-pig';
 import { Ground } from '../../molecules/ground';
 import { Slingshot } from '../../organisms/slingshot/slingshot';
@@ -16,23 +16,29 @@ import {
     OBSTACLE_SQUARE_LENGTH,
     Composite
 } from '../../atoms/constants';
+import { IceSquare } from '../../organisms/obstacles/ice-square';
 
 
-class TutorialStage extends Subject {
+class AeolianStage extends Subject {
     constructor() {
         super();
         this.composites = [];
         this.remainingBirds = 3;
         this.score = 0;
-        this.maxScore = 1;
+        this.maxScore = 3;
         this.isOver = false;
-        this.highScore = window.localStorage.getItem("stage1") || 0
 
-        this.bird = new TrojanBird(BIRD_X, BIRD_Y, 20);
+        this.bird = new WindBird(BIRD_X, BIRD_Y, 20);
         this.ground = new Ground(GROUND_X, GROUND_Y, RENDER_WIDTH, GROUND_HEIGHT);
         this.slingshot = new Slingshot(this.bird);
-        this.pig = new MinionPig(1000, 425, PIG_SIZE_MINION);
-        this.steelSquare = new SteelSquare(1000, 525, OBSTACLE_SQUARE_LENGTH, OBSTACLE_SQUARE_LENGTH);
+        this.pig = new MinionPig(1000, 440, PIG_SIZE_MINION);
+        this.pig1 = new MinionPig(1060, 380, PIG_SIZE_MINION);
+        this.pig2 = new MinionPig(1120, 440, PIG_SIZE_MINION);
+        this.steelSquare1 = new SteelSquare(1000, 500, OBSTACLE_SQUARE_LENGTH, OBSTACLE_SQUARE_LENGTH);
+        this.steelSquare2 = new SteelSquare(1060, 500, OBSTACLE_SQUARE_LENGTH, OBSTACLE_SQUARE_LENGTH);
+        this.steelSquare3 = new SteelSquare(1120, 500, OBSTACLE_SQUARE_LENGTH, OBSTACLE_SQUARE_LENGTH);
+        this.iceSquare = new IceSquare(1060, 440, OBSTACLE_SQUARE_LENGTH, OBSTACLE_SQUARE_LENGTH);
+
 
         this.composites.push(this.slingshot.getLeftElastic());
         this.composites.push(this.slingshot.getRightElastic());
@@ -40,14 +46,19 @@ class TutorialStage extends Subject {
         this.composites.push(this.ground.getBody());
         this.composites.push(this.bird.getBody());
         this.composites.push(this.pig.getBody());
-        this.composites.push(this.steelSquare.getBody());
+        this.composites.push(this.pig1.getBody());
+        this.composites.push(this.pig2.getBody());
+        this.composites.push(this.steelSquare1.getBody());
+        this.composites.push(this.steelSquare2.getBody());
+        this.composites.push(this.steelSquare3.getBody());
+        this.composites.push(this.iceSquare.getBody());
         
-        document.getElementById('rb-stage1').style.display = "flex";
-        document.getElementById('rb-stage1-red1').style.display = "flex";
-        document.getElementById('rb-stage1-red2').style.display = "flex";
-        document.getElementById('rb-stage1-red3').style.display = "flex";
-        document.getElementById("troy-heading").style.animation = "fade 5s linear";
-        document.getElementById("troy-battlecry").style.animation = "fade 5s linear";
+        document.getElementById('rb-stage5').style.display = "flex";
+        document.getElementById('rb-stage5-red1').style.display = "flex";
+        document.getElementById('rb-stage5-red2').style.display = "flex";
+        document.getElementById('rb-stage5-red3').style.display = "flex";
+        document.getElementById("aeolian-heading").style.animation = "fade 5s linear";
+        document.getElementById("aeolian-battlecry").style.animation = "fade 5s linear";
 
         this.flyingBird = this.bird;
     }
@@ -56,39 +67,18 @@ class TutorialStage extends Subject {
         return this.composites;
     }
 
-    checkHighScore() {
-        if (this.getStars() > this.highScore) {
-            this.highScore = this.getStars();
-            window.localStorage.setItem("stage1", this.score)
-            var stars = ""
-            for (var i = 0; i<this.getStars(); i++) {
-                if (i == 2){
-                stars += "⭐️"
-                } else {
-                    stars += "⭐️ "
-                }
-            }
-            document.getElementById('score1').innerHTML = `high record : `+stars;
-            document.getElementById('stage1-star').innerHTML = stars;
-        }
-    }
-
     // transmit information to ScoreDisplay
     updateScore(score) {
-        // this.notifySubscribers('update-score-stage1',
-        //     { remainingBirds: this.remainingBirds },
-        //     { scoreToAdd: score }
-        // )
+        this.notifySubscribers('update-score-stage5',
+            { remainingBirds: this.remainingBirds },
+            { scoreToAdd: score }
+        )
         this.score += score;
-        this.checkHighScore();
+        console.log("SCORE"+this.score)
     }
 
     getStars() {
-        if (this.score == 1) {
-            return 3
-        } else {
-            return 0
-        }
+        return this.score
     }
 
     // control bird firing
@@ -97,11 +87,11 @@ class TutorialStage extends Subject {
         let bird = this.bird;
 
         if (this.remainingBirds == 3) {
-            document.getElementById('rb-stage1-red1').style.display = "none";
+            document.getElementById('rb-stage5-red1').style.display = "none";
         } else if (this.remainingBirds == 2) {
-            document.getElementById('rb-stage1-red2').style.display = "none";
+            document.getElementById('rb-stage5-red2').style.display = "none";
         } else if (this.remainingBirds == 1) {
-            document.getElementById('rb-stage1-red3').style.display = "none";
+            document.getElementById('rb-stage5-red3').style.display = "none";
         }
         this.remainingBirds -= 1;
         if (this.remainingBirds == 0) {
@@ -110,7 +100,7 @@ class TutorialStage extends Subject {
             Composite.remove(world, slingshot.getLeftElastic());
             Composite.remove(world, slingshot.getRightElastic());
         } else {
-            let newBird = new TrojanBird(BIRD_X, BIRD_Y, 20);
+            let newBird = new WindBird(BIRD_X, BIRD_Y, 20);
             this.bird = newBird;
             bird = this.bird;
             Composite.add(world, bird.getBody());
@@ -120,4 +110,4 @@ class TutorialStage extends Subject {
     }
 }
 
-export { TutorialStage }
+export { AeolianStage }

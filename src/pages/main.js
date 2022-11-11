@@ -19,18 +19,41 @@ import { TutorialStage } from '../templates/stages/tutorial-stage';
 import { PyramidStage } from '../templates/stages/pyramid-stage';
 import { TwoPyramidStage } from '../templates/stages/two-pyramid-stage';
 import { BoomerangStage } from '../templates/stages/boomerang-stage';
+import { AeolianStage } from '../templates/stages/aeolian-stage';
 import { ScoreDisplay } from '../templates/screens/score-display';
+import { LaestrygonianStage } from '../templates/stages/laestrygonian-stage';
+import { AeaeanStage } from '../templates/stages/aeaean-stage';
+import { DeadStage } from '../templates/stages/dead-stage';
+import { SirenStage } from '../templates/stages/siren-stage';
+import { ScyllaStage } from '../templates/stages/scylla-stage';
+import { HeliosStage } from '../templates/stages/helios-stage';
+import { OgygiaStage } from '../templates/stages/ogygia-stage';
+import { ScheriaStage } from '../templates/stages/scheria-stage';
+import { IthacaStage } from '../templates/stages/ithaca-stage';
 
 const stage1 = document.getElementById('stage1');
 const stage2 = document.getElementById('stage2');
 const stage3 = document.getElementById('stage3');
 const stage4 = document.getElementById('stage4');
+const stage5 = document.getElementById('stage5')
+const stage6 = document.getElementById('stage6')
+const stage7 = document.getElementById('stage7')
+const stage8 = document.getElementById('stage8')
+const stage9 = document.getElementById('stage9')
+const stage10 = document.getElementById('stage10')
+const stage11 = document.getElementById('stage11')
+const stage12 = document.getElementById('stage12')
+const stage13 = document.getElementById('stage13')
+const stage14 = document.getElementById('stage14')
+
+const stages = ["tutorial", "pyramid", "twoPyramid", "boomerang", "aeolian", "laestrygonian", "aeaean", "dead", "siren", "scylla", "helios", "ogygia", "scheria", "ithaca"]
 
 const playHomeButton = document.getElementById('play-home');
 const restartButton = document.getElementById('restart-btn');
 const homeButton = document.getElementById('home-btn');
 const stageButton = document.getElementById('stage-btn');
 const retryBtn = document.getElementById('retry-btn');
+const nextButton = document.getElementById('next-btn')
 
 let score,
     engine,
@@ -42,7 +65,18 @@ let score,
     tutorialStage,
     pyramidStage,
     twoPyramidStage,
-    boomerangStage;
+    boomerangStage,
+    aeolianStage,
+    laestrygonianStage,
+    aeaeanStage,
+    deadStage,
+    sirenStage,
+    scyllaStage,
+    heliosStage,
+    ogygiaStage,
+    scheriaStage,
+    ithacaStage;
+
 let stageName = "home";
 let firing = false;
 
@@ -83,6 +117,7 @@ function setup() {
     });
 
     render.mouse = mouse;
+    
 }
 
 // add composites to render canvas
@@ -106,19 +141,92 @@ function draw() {
         score.score_stage2 = 0;
         pyramidStage = new PyramidStage();
         getStage(pyramidStage);
+        render.options.background = "url(../../data/img/ismarus.jpeg)";
     }
     else if (stageName == "twoPyramid") {
         Composite.clear(engine.world);
         score.score_stage3 = 0;
         twoPyramidStage = new TwoPyramidStage();
         getStage(twoPyramidStage);
+        render.options.background = "url(../../data/img/lotus.jpeg)";
     }
     else if (stageName == "boomerang") {
         Composite.clear(engine.world);
         score.score_stage4 = 0;
         boomerangStage = new BoomerangStage();
         getStage(boomerangStage);
+        render.options.background = "url(../../data/img/cyclop.jpg)";
     }
+else if (stageName == "aeolian") {
+    Composite.clear(engine.world);
+    score.score_stage5 = 0;
+    aeolianStage = new AeolianStage();
+    getStage(aeolianStage);
+    render.options.background = "url(../../data/img/aeolion.jpeg)";
+}
+else if (stageName == "laestrygonian") {
+    Composite.clear(engine.world);
+    //score.score_stage6 = 0;
+    laestrygonianStage = new LaestrygonianStage();
+    getStage(laestrygonianStage);
+    render.options.background = "url(../../data/img/laestrygonian.jpeg)";
+}
+else if (stageName == "aeaean") {
+    Composite.clear(engine.world);
+    //score.score_stage6 = 0;
+    aeaeanStage = new AeaeanStage();
+    getStage(aeaeanStage);
+    render.options.background = "url(../../data/img/aeaean.jpeg)";
+}
+else if (stageName == "dead") {
+    Composite.clear(engine.world);
+    //score.score_stage6 = 0;
+    deadStage = new DeadStage();
+    getStage(deadStage);
+    render.options.background = "url(../../data/img/houseofdead.jpeg)";
+}
+else if (stageName == "siren") {
+    Composite.clear(engine.world);
+    //score.score_stage6 = 0;
+    sirenStage = new SirenStage();
+    getStage(sirenStage);
+    render.options.background = "url(../../data/img/siren.jpeg)";
+}
+else if (stageName == "scylla") {
+    Composite.clear(engine.world);
+    //score.score_stage6 = 0;
+    scyllaStage = new ScyllaStage();
+    getStage(scyllaStage);
+    render.options.background = "url(../../data/img/scylla.jpeg)";
+}
+else if (stageName == "helios") {
+    Composite.clear(engine.world);
+    //score.score_stage6 = 0;
+    heliosStage = new HeliosStage();
+    getStage(heliosStage);
+    render.options.background = "url(../../data/img/helios.jpeg)";
+}
+else if (stageName == "ogygia") {
+    Composite.clear(engine.world);
+    //score.score_stage6 = 0;
+    ogygiaStage = new OgygiaStage();
+    getStage(ogygiaStage);
+    render.options.background = "url(../../data/img/ogygia.jpeg)";
+}
+else if (stageName == "scheria") {
+    Composite.clear(engine.world);
+    //score.score_stage6 = 0;
+    scheriaStage = new ScheriaStage();
+    getStage(scheriaStage);
+    render.options.background = "url(../../data/img/scheria.jpeg)";
+}
+else if (stageName == "ithaca") {
+    Composite.clear(engine.world);
+    //score.score_stage6 = 0;
+    ithacaStage = new IthacaStage();
+    getStage(ithacaStage);
+    render.options.background = "url(../../data/img/ithaca.jpeg)";
+}
     noLoop();
 }
 
@@ -144,9 +252,54 @@ stage4.addEventListener('click', function (event) {
     resetStage("boomerang");
 });
 
+stage5.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetStage("aeolian")
+})
+stage6.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetStage("laestrygonian")
+})
+stage7.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetStage("aeaean")
+})
+stage8.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetStage("dead")
+})
+stage9.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetStage("siren")
+})
+stage10.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetStage("scylla")
+})
+stage11.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetStage("helios")
+})
+stage12.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetStage("ogygia")
+})
+stage13.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetStage("scheria")
+})
+stage14.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetStage("ithaca")
+})
+
+
 // home screen to stage select screen
 playHomeButton.addEventListener('click', function (event) {
     event.preventDefault();
+    var theme = new Audio("../../data/audio/theme.mp3")
+    theme.loop = true
+    theme.play()
     let awaitReset = new Promise((resolve) => {
         stageName = "selectStage";
         setTimeout(function () {
@@ -161,27 +314,6 @@ playHomeButton.addEventListener('click', function (event) {
 // when user click restart button
 restartButton.addEventListener('click', function (event) {
     event.preventDefault();
-    if (stageName == "tutorial") {
-        score.score_stage1 = 0;
-        document.getElementById('rb-stage1-red1').style.display = "flex";
-        document.getElementById('rb-stage1-red2').style.display = "flex";
-        document.getElementById('rb-stage1-red3').style.display = "flex";
-    } else if (stageName == "pyramid") {
-        score.score_stage2 = 0;
-        document.getElementById('rb-stage2-red1').style.display = "flex";
-        document.getElementById('rb-stage2-chuck1').style.display = "flex";
-        document.getElementById('rb-stage2-chuck2').style.display = "flex";
-    } else if (stageName == "twoPyramid") {
-        score.score_stage3 = 0;
-        document.getElementById('rb-stage3-red1').style.display = "flex";
-        document.getElementById('rb-stage3-chuck1').style.display = "flex";
-        document.getElementById('rb-stage3-bomb1').style.display = "flex";
-    } else if (stageName == "boomerang") {
-        score.score_stage4 = 0;
-        document.getElementById('rb-stage4-hal1').style.display = "flex";
-        document.getElementById('rb-stage4-hal2').style.display = "flex";
-        document.getElementById('rb-stage4-hal3').style.display = "flex";
-    }
     resetStage(stageName);
 });
 retryBtn.addEventListener('click', function (event) {
@@ -199,6 +331,19 @@ stageButton.addEventListener('click', function (event) {
     event.preventDefault();
     resetStage("home");
 });
+
+nextButton.addEventListener('click', function (event) {
+    event.preventDefault()
+    hideStage(stageName)
+    var index = stages.indexOf(stageName)
+
+    resetStage(stages[index+1])
+})
+
+function hideStage(stageName) {
+    var stageElements = {"tutorial":document.getElementById("rb-stage1"), "pyramid":document.getElementById("rb-stage2"), "twoPyramid":document.getElementById("rb-stage3")}
+    stageElements[stageName].style.display = 'none';
+}
 
 // bird ability
 function keyPressed() {
@@ -242,6 +387,25 @@ function resetEvents() {
     }
 }
 
+function endStage(stage) {
+    if (!stage.isOver) {
+    stage.isOver = true;
+              document.getElementById("current-stars").innerHTML = ""
+              for (let i = 0; i < 3; i++) {
+                if (i+1 <= stage.getStars()) {
+                    document.getElementById('current-stars').innerHTML += "⭐️";
+                } else {
+                    document.getElementById('current-stars').innerHTML += "★";
+                }
+               }
+               if (stage.getStars() > 0) {
+                showButton("next-btn")
+               }
+               showButton("retry")
+               showButton("big-stars")
+            }
+}
+
 // check firing events
 function firingEvents(stage) {
     if (stage.remainingBirds > 0) {
@@ -281,17 +445,12 @@ function firingEvents(stage) {
         // document.getElementById('rb-stage1-red2').style.display = "flex";
         // document.getElementById('rb-stage1-red3').style.display = "flex";
                    // resetStage(stageName);
-                   for (let i = 0; i < 3; i++) {
-                    if (i+1 <= stage.score) {
-                        document.getElementById('current-stars').innerHTML += "⭐️";
-                    } else {
-                        document.getElementById('current-stars').innerHTML += "X";
-                    }
-                   }
-                   showButton("retry")
-                }, 1000)
+                   endStage(stage)
+                }, 3000)
+                
             }
             }
+        
         })
     }
 }
@@ -304,13 +463,6 @@ function addScore(stage) {
             stage.pig.body.position.x = -100;
             score += 1;
             stage.updateScore(score);
-            if (score == 1) {
-              //  score.score_stage1 = 0;
-        document.getElementById('rb-stage1-red1').style.display = "flex";
-        document.getElementById('rb-stage1-red2').style.display = "flex";
-        document.getElementById('rb-stage1-red3').style.display = "flex";
-                resetStage(stageName);
-            }
         }
     }
     else if (stageName == "pyramid") {
@@ -333,15 +485,15 @@ function addScore(stage) {
             stage.pig1.body.position.x = -100;
             score += 1;
             stage.updateScore(score);
-        } else if (stage.pig2.body.position.x > RENDER_WIDTH) {
+        } if (stage.pig2.body.position.x > RENDER_WIDTH) {
             stage.pig2.body.position.x = -100;
             score += 3;
             stage.updateScore(score);
-        } else if (stage.pig3.body.position.x > RENDER_WIDTH) {
+        } if (stage.pig3.body.position.x > RENDER_WIDTH) {
             stage.pig3.body.position.x = -100;
             score += 1;
             stage.updateScore(score);
-        } else if (stage.pig4.body.position.x > RENDER_WIDTH) {
+        } if (stage.pig4.body.position.x > RENDER_WIDTH) {
             stage.pig4.body.position.x = -100;
             score += 1;
             stage.updateScore(score);
@@ -353,6 +505,142 @@ function addScore(stage) {
             score += 2;
             stage.updateScore(score);
         }
+    } 
+    else if (stageName == "aeolian") {
+        if (stage.pig.body.position.x > RENDER_WIDTH) {
+            stage.pig.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig1.body.position.x > RENDER_WIDTH) {
+            stage.pig1.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig2.body.position.x > RENDER_WIDTH) {
+            stage.pig2.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        }
+    }
+    else if (stageName == "laestrygonian") {
+        if (stage.pig.body.position.x > RENDER_WIDTH) {
+            stage.pig.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        }
+    } 
+    else if (stageName == "aeaean") {
+        if (stage.pig1.body.position.x > RENDER_WIDTH) {
+            stage.pig1.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig2.body.position.x > RENDER_WIDTH) {
+            stage.pig2.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig3.body.position.x > RENDER_WIDTH) {
+            stage.pig3.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        }
+    } else if (stageName == "dead") {
+        if (stage.pig1.body.position.x > RENDER_WIDTH) {
+            stage.pig1.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig2.body.position.x > RENDER_WIDTH) {
+            stage.pig2.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig3.body.position.x > RENDER_WIDTH) {
+            stage.pig3.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        }
+    } 
+    else if (stageName == "siren") {
+        if (stage.pig1.body.position.x > RENDER_WIDTH) {
+            stage.pig1.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig2.body.position.x > RENDER_WIDTH) {
+            stage.pig2.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig3.body.position.x > RENDER_WIDTH) {
+            stage.pig3.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        }
+    }
+    else if (stageName == "scylla") {
+        if (stage.pig.body.position.x > RENDER_WIDTH) {
+            stage.pig.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        }
+    }
+    else if (stageName == "helios") {
+        if (stage.pig1.body.position.x > RENDER_WIDTH) {
+            stage.pig1.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig2.body.position.x > RENDER_WIDTH) {
+            stage.pig2.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig3.body.position.x > RENDER_WIDTH) {
+            stage.pig3.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        }
+    }
+    else if (stageName == "ogygia") {
+        if (stage.pig1.body.position.x > RENDER_WIDTH) {
+            stage.pig1.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig2.body.position.x > RENDER_WIDTH) {
+            stage.pig2.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig3.body.position.x > RENDER_WIDTH) {
+            stage.pig3.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        }
+    }
+    else if (stageName == "scheria") {
+        if (stage.pig1.body.position.x > RENDER_WIDTH) {
+            stage.pig1.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig2.body.position.x > RENDER_WIDTH) {
+            stage.pig2.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig3.body.position.x > RENDER_WIDTH) {
+            stage.pig3.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        }
+    }
+    else if (stageName == "ithaca") {
+        if (stage.pig1.body.position.x > RENDER_WIDTH) {
+            stage.pig1.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig2.body.position.x > RENDER_WIDTH) {
+            stage.pig2.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        } else if (stage.pig3.body.position.x > RENDER_WIDTH) {
+            stage.pig3.body.position.x = -100;
+            score += 1;
+            stage.updateScore(score);
+        }
+    }
+    if (stage.maxScore == stage.score) {
+        endStage(stage)
     }
 }
 

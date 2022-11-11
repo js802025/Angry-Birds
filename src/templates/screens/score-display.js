@@ -5,10 +5,12 @@ class ScoreDisplay {
         this.score_stage2 = 0;
         this.score_stage3 = 0;
         this.score_stage4 = 0;
+        this.score_stage5 = 0;
         this.score_stage1_high = 0;
         this.score_stage2_high = 0;
         this.score_stage3_high = 0;
         this.score_stage4_high = 0;
+        this.score_stage5_high = 0;
     }
 
     // update score if user get high record
@@ -46,6 +48,11 @@ class ScoreDisplay {
                 document.getElementById('score4').innerHTML = `high record : ⭐️ ⭐️ ⭐️`;
                 document.getElementById('stage4-star').innerHTML = `⭐️ ⭐️ ⭐️`;
             }
+        } else if (stageName == "stage5") {
+            if (this.score_stage5_high == 2) {
+                document.getElementById('score5').innerHTML = `high record : ⭐️ ⭐️ ⭐️`;
+                document.getElementById('stage5-star').innerHTML = `⭐️ ⭐️ ⭐️`;
+            }
         }
     }
 
@@ -59,6 +66,8 @@ class ScoreDisplay {
             this.score_stage3_high = this.score_stage3;
         } else if (this.score_stage4 > this.score_stage4_high) {
             this.score_stage4_high = this.score_stage4;
+        } else if (this.score_stage5 > this.score_stage5_high) {
+            this.score_stage5_high = this.score_stage5;
         }
     }
 
@@ -88,6 +97,13 @@ class ScoreDisplay {
             this.score_stage4 += scoreToAdd;
             this.remainingBirds = remainingBirds;
             this.updateStar("stage4");
+        }
+        else if (source == 'update-score-stage5') {
+            const { remainingBirds } = others[0];
+            const { scoreToAdd } = others[1];
+            this.score_stage5+= scoreToAdd;
+            this.remainingBirds = remainingBirds;
+            this.updateStar("stage5");
         }
     }
 }

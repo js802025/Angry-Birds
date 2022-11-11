@@ -1,4 +1,4 @@
-import { HalBird } from '../../organisms/birds/hal-bird';
+import { EyeballBird } from '../../organisms/birds/eyeball-bird';
 import { CorporalPig } from '../../organisms/pigs/corporal-pig';
 import { Ground } from '../../molecules/ground';
 import { Slingshot } from '../../organisms/slingshot/slingshot';
@@ -22,8 +22,10 @@ class BoomerangStage extends Subject {
         super();
         this.composites = [];
         this.remainingBirds = 3;
+        this.score = 0
+        this.maxScore = 2;
 
-        this.bird = new HalBird(BIRD_X, BIRD_Y, BIRD_SIZE_HAL);
+        this.bird = new EyeballBird(BIRD_X, BIRD_Y, 20);
         this.ground1 = new Ground(GROUND_X, GROUND_Y, RENDER_WIDTH, GROUND_HEIGHT);
         this.slingshot = new Slingshot(this.bird);
         this.pig = new CorporalPig(800, 480, PIG_SIZE_CORPORAL);
@@ -32,6 +34,14 @@ class BoomerangStage extends Subject {
         this.steelSquare2 = new SteelSquare(600, 480, OBSTACLE_SQUARE_LENGTH, OBSTACLE_SQUARE_LENGTH);
         this.steelSquare3 = new SteelSquare(600, 420, OBSTACLE_SQUARE_LENGTH, OBSTACLE_SQUARE_LENGTH);
         this.steelSquare4 = new SteelSquare(800, 540, OBSTACLE_SQUARE_LENGTH, OBSTACLE_SQUARE_LENGTH);
+
+
+        document.getElementById('rb-stage4').style.display = "flex";
+        document.getElementById('rb-stage4-hal1').style.display = "flex";
+        document.getElementById('rb-stage4-hal2').style.display = "flex";
+        document.getElementById('rb-stage4-hal3').style.display = "flex";
+        document.getElementById("cyclop-heading").style.animation = "fade 5s linear";
+        document.getElementById("cyclop-battlecry").style.animation = "fade 5s linear";
 
         this.flyingBird = this.bird;
         this.composites.push(this.slingshot.getLeftElastic());
@@ -57,6 +67,15 @@ class BoomerangStage extends Subject {
             { remainingBirds: this.remainingBirds },
             { scoreToAdd: score }
         )
+        this.score += score
+    }
+
+    getStars() {
+        if (this.score == 2) {
+            return 3
+        } else {
+            return 0
+        }
     }
 
     // control bird firing
@@ -67,10 +86,10 @@ class BoomerangStage extends Subject {
 
         if (this.remainingBirds == 3) {
             document.getElementById('rb-stage4-hal1').style.display = "none";
-            newBird = new HalBird(BIRD_X, BIRD_Y, BIRD_SIZE_HAL);
+            newBird = new EyeballBird(BIRD_X, BIRD_Y, 20);
         } else if (this.remainingBirds == 2) {
             document.getElementById('rb-stage4-hal2').style.display = "none";
-            newBird = new HalBird(BIRD_X, BIRD_Y, BIRD_SIZE_HAL);
+            newBird = new EyeballBird(BIRD_X, BIRD_Y, 20);
         } else if (this.remainingBirds == 1) {
             document.getElementById('rb-stage4-hal3').style.display = "none";
         }

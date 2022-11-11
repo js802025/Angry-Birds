@@ -1,4 +1,4 @@
-import { RedBird } from '../../organisms/birds/red-bird';
+import { LotusBird } from '../../organisms/birds/lotus-bird';
 import { ChuckBird } from '../../organisms/birds/chuck-bird';
 import { BombBird } from '../../organisms/birds/bomb-bird';
 import { MinionPig } from '../../organisms/pigs/minion-pig';
@@ -30,8 +30,11 @@ class TwoPyramidStage extends Subject {
         super();
         this.composites = [];
         this.remainingBirds = 3;
+        this.score = 0;
+        this.isOver = false;
+        this.maxScore = 6;
 
-        this.bird = new RedBird(BIRD_X, BIRD_Y, BIRD_SIZE_RED);
+        this.bird = new LotusBird(BIRD_X, BIRD_Y, 20);
         this.ground = new Ground(GROUND_X, GROUND_Y, RENDER_WIDTH, GROUND_HEIGHT);
         this.slingshot = new Slingshot(this.bird);
         this.pig1 = new MinionPig(990, 300, PIG_SIZE_MINION);
@@ -46,6 +49,13 @@ class TwoPyramidStage extends Subject {
             return box.getBody()
         });
         this.flyingBird = this.bird;
+
+        document.getElementById('rb-stage3').style.display = "flex";
+        document.getElementById('rb-stage3-red1').style.display = "flex";
+        document.getElementById('rb-stage3-chuck1').style.display = "flex";
+        document.getElementById('rb-stage3-bomb1').style.display = "flex";
+        document.getElementById("lotus-heading").style.animation = "fade 5s linear";
+        document.getElementById("lotus-battlecry").style.animation = "fade 5s linear";
 
         this.composites.push(this.slingshot.getLeftElastic());
         this.composites.push(this.slingshot.getRightElastic());
@@ -66,13 +76,26 @@ class TwoPyramidStage extends Subject {
         return this.composites;
     }
 
+    getStars() {
+        if (this.score <= 2) {
+            return 1
+        } else if (this.score > 2 && this.score < 6) {
+            return 2
+        } else if (this.score == 6) {
+            return 3
+        }
+    }
+
     // transmit information to ScoreDisplay
     updateScore(score) {
         this.notifySubscribers('update-score-stage3',
             { remainingBirds: this.remainingBirds },
             { scoreToAdd: score }
         )
+        this.score += score
     }
+
+
 
     // control bird firing
     firing(world) {
@@ -82,10 +105,10 @@ class TwoPyramidStage extends Subject {
 
         if (this.remainingBirds == 3) {
             document.getElementById('rb-stage3-red1').style.display = "none";
-            newBird = new ChuckBird(BIRD_X, BIRD_Y, BIRD_SIZE_CHUCK);
+            newBird = new LotusBird(BIRD_X, BIRD_Y, 20);
         } else if (this.remainingBirds == 2) {
             document.getElementById('rb-stage3-chuck1').style.display = "none";
-            newBird = new BombBird(BIRD_X, BIRD_Y, BIRD_SIZE_BOMB);
+            newBird = new LotusBird(BIRD_X, BIRD_Y, 20);
         } else if (this.remainingBirds == 1) {
             document.getElementById('rb-stage3-bomb1').style.display = "none";
         }
