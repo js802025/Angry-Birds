@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'angry-birds';
-    src: url('https://github.com/js802025/Angry-Birds/raw/main/data/font/angrybirds-regular.ttf') format('truetype');
+    src: url('../data/font/angrybirds-regular.ttf') format('truetype');
 }
 
 body {
